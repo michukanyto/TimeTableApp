@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="177dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="176dp"
+        android:text="Time Tables"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBarTime"
+        android:layout_width="366dp"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="88dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        android:layout_marginTop="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15sp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="15sp"/>
+
+    <ListView
+        android:id="@+id/listViewTimeTables"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarTime"
+        android:layout_marginTop="30sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="15sp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="15sp"/>
+
+</android.support.constraint.ConstraintLayout>
