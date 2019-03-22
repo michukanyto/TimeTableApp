@@ -28,13 +28,18 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         listViewTimeTable = findViewById(R.id.listViewTimeTables);
         seekBarTimes.setMax(MAX);
         numbers = new ArrayList<>();
-        myAdapter = new ArrayAdapter<>();
+        DisplayTimes();
+    }
+
+    private void DisplayTimes() {
+        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,numbers);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        listViewTimeTable
+        giveNumber(progress);
     }
+
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
@@ -44,5 +49,11 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
+    }
+
+    private void giveNumber(int progress) {
+        for (int i = 1 ; i <= 10; i++){
+            numbers.add(progress * i);
+        }
     }
 }
