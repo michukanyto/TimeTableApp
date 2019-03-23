@@ -14,11 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     SeekBar seekBarTimes;
     ListView listViewTimeTable;
-    final int MAX = 99;
-    int max = 150;
-    int min = 51;
-    int current = 100;
-    int value = 0;
     ArrayList<Integer> numbers;
     ArrayAdapter<Integer> myAdapter;
 
@@ -28,24 +23,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initialize();
     }
-
-//    private void initialize() {
+//////////////////// SOLUTION 1 ///////////////////////////
+//    private void initialize() {  // To use this solutions you'll need implements SeekBar.OnSeekBarChangeListener to MainActivity
+//        numbers = new ArrayList<Integer>();
 //        seekBarTimes = findViewById(R.id.seekBarTime);
 //        seekBarTimes.setOnSeekBarChangeListener(this);
 //        listViewTimeTable = findViewById(R.id.listViewTimeTables);
-//        seekBarTimes.setMax(max);
-//        seekBarTimes.setProgress(min);
-//        numbers = new ArrayList<>();
+//        seekBarTimes.setMax(10);
+//        seekBarTimes.setProgress(1);
 //        for(int i = 1; i < 11; i++){
 //            numbers.add(i);
 //        }
-//        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,numbers);
-//        listViewTimeTable.setAdapter(myAdapter);
+//        populateListView();
 //    }
 //
 //    @Override
 //    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//       givenNumber(progress);
+//        for (int i = 0 ; i < numbers.size(); i++){
+//            numbers.set(i, (i + 1) * progress);
+//        }
+//        populateListView();
+////        givenNumber(progress);
 //
 //    }
 //
@@ -59,34 +57,28 @@ public class MainActivity extends AppCompatActivity {
 //    public void onStopTrackingTouch(SeekBar seekBar) {
 //
 //    }
-//
-//    private void givenNumber(int progress) {
-//
-//        Log.i("--------->",String.valueOf(progress));
-//    }
 
 
+//////////////////// SOLUTION 2 ///////////////////////////
     private void initialize() {
+        numbers = new ArrayList<>();
         seekBarTimes = findViewById(R.id.seekBarTime);
         listViewTimeTable = findViewById(R.id.listViewTimeTables);
         seekBarTimes.setMax(10);
         seekBarTimes.setProgress(1);
-        numbers = new ArrayList<>();
+
         for (int i = 1 ; i <= 10; i++){
             numbers.add(i);
         }
-        myAdapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_list_item_1,numbers);
-        listViewTimeTable.setAdapter(myAdapter);
+        populateListView();
 
         seekBarTimes.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                for (int i = 0 ; i < 10; i++){
-                    value = i + 1;
-                    numbers.set(i, value * progress);
+                for (int i = 0 ; i < numbers.size(); i++){
+                    numbers.set(i, (i + 1) * progress);
                 }
-                myAdapter = new ArrayAdapter<Integer>(getApplicationContext(), android.R.layout.simple_list_item_1,numbers);
-                listViewTimeTable.setAdapter(myAdapter);
+                populateListView();
                 Toast.makeText(getApplicationContext(),String.valueOf(progress),Toast.LENGTH_LONG).show();
 
             }
@@ -102,6 +94,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void populateListView(){
+        myAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1,numbers);
+        listViewTimeTable.setAdapter(myAdapter);
     }
 
 
