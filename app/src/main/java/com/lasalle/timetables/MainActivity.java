@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     ListView listViewTimeTable;
     ArrayList<Integer> numbers;
     ArrayAdapter<Integer> myAdapter;
+    final int MAX = 10;
+    final int INITIALPOSITION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         numbers = new ArrayList<>();
         seekBarTimes = findViewById(R.id.seekBarTime);
         listViewTimeTable = findViewById(R.id.listViewTimeTables);
-        seekBarTimes.setMax(10);
-        seekBarTimes.setProgress(1);
+        seekBarTimes.setMax(MAX);
+        seekBarTimes.setProgress(INITIALPOSITION);
 
         for (int i = 1 ; i <= 10; i++){
             numbers.add(i);
